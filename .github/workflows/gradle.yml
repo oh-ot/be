@@ -29,7 +29,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-#      # Copy test properties (application.yaml)
+#      # Copy test properties (application.yaml) # todo: test 구성되면 이거 이해하고 도입 해 보기!!
 #      - name: copy test properties file
 #        run: cp src/main/resources/secret-keys/application-dev.yaml src/main/resources/application.yaml && cp src/main/resources/secret-keys/application-oauth.yaml src/main/resources/application-oauth.yaml
 
@@ -51,7 +51,12 @@ jobs:
           context: .
           push: true
           tags: jtu1102/spring-cicd-test:latest
+  deploy:
+    # 실행 환경 지정
+    runs-on: ubuntu-latest
 
+    # Task의 sequence를 명시한다.
+    steps:
 #      # CodeDeploy Agent
 #      # --application-name과 --deployment-group-name은 아까 작성하신 애플리케이션 이름과 그룹 이름으로 대체하시면 됩니다.
 #      # [Your GitHub Repository] 예시) Woomin-Jeon/facebook-clone-server
